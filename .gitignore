@@ -1,0 +1,35 @@
+# Byte-compiled / optimized Python files
+__pycache__/
+
+# Compiled Python files
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Ignore generated documentation
+build/
+docs/_build/
+
+# Ignore local development settings
+*.sqlite3
+
+# Ignore the Pipfile.lock
+Pipfile.lock
+
+# Ignore pycache in Jupyter notebooks
+.ipynb_checkpoints/
+
+# Ignore user-specific Python environments
+.python-version
+
