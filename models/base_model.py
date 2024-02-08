@@ -8,6 +8,7 @@ methods for other classes
 from datetime import datetime
 import uuid
 
+
 class BaseModel:
     """A base class for other classes"""
 
