@@ -7,6 +7,7 @@ methods for other classes
 
 from datetime import datetime
 import uuid
+import models
 
 
 class BaseModel:
@@ -30,7 +31,13 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             # assign the current datetime
             self.created_at = datetime.now()
+
+            # call the new method on storage with self as argument
             self.updated_at = datetime.now()
+
+            # call the new method on storage with self as argument
+            models.storage.new(self)
+
 
     def __str__(self):
         """Returns a string representation of the instance"""
@@ -40,6 +47,7 @@ class BaseModel:
     def save(self):
         """Update the updated_at attribute with the current datetime"""
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """Return a dictionary representation of the instance"""
