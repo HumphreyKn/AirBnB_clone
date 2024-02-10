@@ -38,7 +38,6 @@ class BaseModel:
             # call the new method on storage with self as argument
             models.storage.new(self)
 
-
     def __str__(self):
         """Returns a string representation of the instance"""
         class_name = self.__class__.__name__
