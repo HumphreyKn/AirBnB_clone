@@ -21,7 +21,7 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key == '__class__':
                     continue
-                elif key == 'created_at' or key == 'updated_at':
+                if key in ('created_at' 'updated_at'):
                     value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
 
                 # set the attribute with the given key and value
@@ -33,7 +33,7 @@ class BaseModel:
             self.created_at = datetime.now()
 
             # call the new method on storage with self as argument
-            self.updated_at = datetime.now()
+            self.updated_at = self.created_at)
 
             # call the new method on storage with self as argument
             models.storage.new(self)
