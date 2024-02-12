@@ -33,7 +33,7 @@ class BaseModel:
             self.created_at = datetime.now()
 
             # call the new method on storage with self as argument
-            self.updated_at = self.created_at)
+            self.updated_at = self.created_at
 
             # call the new method on storage with self as argument
             models.storage.new(self)
