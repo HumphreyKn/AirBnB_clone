@@ -6,7 +6,7 @@ methods for other classes
 """
 
 from datetime import datetime
-import uuid
+from uuid import uuid4
 import models
 
 
@@ -22,13 +22,13 @@ class BaseModel:
                 if key == '__class__':
                     continue
                 if key in ('created_at' 'updated_at'):
-                    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                    value = datetime.fromisoformat(value)
 
                 # set the attribute with the given key and value
                 setattr(self, key, value)
         else:
             # generate a unique id
-            self.id = str(uuid.uuid4())
+            self.id = str(uuid4())
             # assign the current datetime
             self.created_at = datetime.now()
 
