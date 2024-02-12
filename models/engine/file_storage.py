@@ -6,6 +6,8 @@ and deserializes JSON file to instances
 """
 
 import json
+from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -15,6 +17,11 @@ class FileStorage:
     __file_path = "file.json"
     # the dictionary that stores all objects by <class name>.id
     __objects = {}
+    # the class name of the object
+    __class_names = {
+        "BaseModel": BaseModel,
+        "User": User
+    }
 
     def all(self):
         """returns the __objects dictionary"""
@@ -39,7 +46,7 @@ class FileStorage:
         # open the file in write mode
         with open(self.__file_path, 'w') as file:
             # dump the dictionary to the file in JSON format
-            json.dump(dictionary, file)
+            json.dump(dictionary, file, indent=4)
 
     def reload(self):
         """Deserializes the JSON file to __objects (only if the JSON file
@@ -56,8 +63,8 @@ class FileStorage:
                     # get the class name from the dictionary values
                     class_name = value['__class__']
 
-                    # import the class from the models module
-                    cls = __import__('models').__dict__[class_name]
+                    # get the class from the __class_names dict
+                    cls = self.__class_names[class_name]
 
                     # create an instance of the class from the dictionary
                     # representation

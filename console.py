@@ -10,6 +10,9 @@ class HBNBCommand(cmd.Cmd):
     """A command interpreter for HBNB"""
 
     prompt = '(hbnb) '
+    classes = {
+        'BaseModel':BaseModel
+    }
 
     # define the method to exit the program
     def do_quit(self, arg):
@@ -34,12 +37,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
         # check if the class name is valid
-        elif arg != 'BaseModel':
+        elif arg not in self.classes:
             print("** class doesn't exist **")
 
         else:
-            # Create a new instance of BaseModel
-            obj = BaseModel()
+            # Create a new instance of the class
+            obj = self.classes[arg]()
             # save the instance to the JSON file
             obj.save()
             print(obj.id)
@@ -54,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
             print("** the class is missing **")
 
         # check if the class name is valid
-        elif args[0] != 'BaseModel':
+        elif args[0] not in self.classes:
             print("** class doesn't exist **")
 
         # check if the id is given
@@ -90,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
             print("** the class is missing **")
 
         # check if the class name is valid
-        elif args[0] != 'BaseModel':
+        elif args[0] not in self.classes:
             print("** class doesn't exist **")
 
         # check if the id is given
@@ -137,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
             print(list_str)
 
         # check if the class name is valid
-        elif args[0] != 'BaseModel':
+        elif args[0] not in self.classes:
             print("** class doesn't exist **")
 
         else:
@@ -166,7 +169,7 @@ class HBNBCommand(cmd.Cmd):
             # print an error message
             print("** class name missing **")
         # check if the class name is valid
-        elif args[0] != "BaseModel":
+        elif args[0] not in self.classes:
             # print an error message
             print("** class doesn't exist **")
         # check if the id is given
