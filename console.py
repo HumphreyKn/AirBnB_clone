@@ -244,6 +244,8 @@ class HBNBCommand(cmd.Cmd):
                 # check if the method name is all
                 if method_name == 'all()':
                     self.do_all(class_name)
+                elif method_name == 'count()':
+                    self.do_count(class_name)
                 else:
                     print("*** Unknown syntax: {}".format(arg))
             else:
@@ -251,6 +253,20 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("*** Unknown syntax: {}".format(arg))
 
+    def do_count(self, arg):
+        """Count the number of instances of a class"""
+        # get the class name from the argument
+        class_name = arg
+        # get the dictionary of all instances from the storage
+        objects = storage.all()
+
+        counter = 0
+
+        for key in objects.keys():
+            # check if the key starts with the class name
+            if key.startswith(class_name):
+                counter += 1
+        print(counter)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
