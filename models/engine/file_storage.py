@@ -8,6 +8,11 @@ and deserializes JSON file to instances
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 
 
 class FileStorage:
@@ -20,7 +25,12 @@ class FileStorage:
     # the class name of the object
     __class_names = {
         "BaseModel": BaseModel,
-        "User": User
+        "User": User,
+        "Amenity": Amenity,
+        "City": City,
+        "Place": Place,
+        "Review": Review,
+        "State": State
     }
 
     def all(self):
