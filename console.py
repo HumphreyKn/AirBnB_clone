@@ -230,6 +230,27 @@ class HBNBCommand(cmd.Cmd):
                 # print an error message
                 print("** no instance found **")
 
+    def default(self, arg):
+        """Handle commands of the form <class name>.all()"""
+        # split arguments by dot
+        args = arg.split('.')
+        # check if the arguments have two elements
+        if len(args) == 2:
+            # get the class name and the method name from the arguments
+            class_name = args[0]
+            method_name = args[1]
+            # check if class name is valid
+            if class_name in self.classes:
+                # check if the method name is all
+                if method_name == 'all()':
+                    self.do_all(class_name)
+                else:
+                    print("*** Unknown syntax: {}".format(arg))
+            else:
+                print("*** Unknown syntax: {}".format(arg))
+        else:
+            print("*** Unknown syntax: {}".format(arg))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
